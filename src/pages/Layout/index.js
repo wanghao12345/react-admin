@@ -7,7 +7,6 @@ function Layout() {
   return (
     <div className="LayoutWrapper">
       layout
-      {this.props.children}
     </div>
   );
 }
