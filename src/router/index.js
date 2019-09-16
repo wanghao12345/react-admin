@@ -3,21 +3,16 @@
  */
 import React from 'react'
 import { HashRouter, Route, Switch } from 'react-router-dom'
-import Login from '../pages/Login'
-import Layout from '../pages/Layout'
 import Menu1 from '../pages/menu1'
 import Menu2 from '../pages/menu2'
 
-
-import Home from '../pages/Home'
 
 
 const BasicRoute = () => (
   <HashRouter>
     <Switch>
-      <Route exact path="/login" component={Login}></Route>
-      <Route exact path="/layout" component={Layout}></Route>
-      <Route exact path="/home" component={Home}></Route>
+      <Route exact path="/app/menu1" component={Menu1}></Route>
+      <Route exact path="/app/menu2" component={Menu2}></Route>
     </Switch>
   </HashRouter>
 )
