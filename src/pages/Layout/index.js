@@ -3,10 +3,11 @@
  */
 import React from 'react';
 
-function Layout() {
+function Layout(props) {
+  const { children } = props
   return (
     <div className="LayoutWrapper">
-      layout
+      { children }
     </div>
   );
 }
