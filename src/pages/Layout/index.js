@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {Layout, Menu, Breadcrumb, Icon} from 'antd'
+import Logo from '@/components/Logo'
 import '@/style/antd/index.less'
 
 const {SubMenu} = Menu;
@@ -13,7 +14,9 @@ function LayoutMain(props) {
   return (
     <Layout>
       <Sider width={200} style={{background: '#fff'}}>
-        <div className="logo"></div>
+        <div className="logo">
+          <Logo />
+        </div>
         <Menu
           mode="inline"
           defaultSelectedKeys={['1']}
@@ -25,7 +28,7 @@ function LayoutMain(props) {
             title={
               <span>
               <Icon type="user"/>
-              subnav 1
+              首页
             </span>
             }
           >
@@ -39,7 +42,7 @@ function LayoutMain(props) {
             title={
               <span>
               <Icon type="laptop"/>
-              subnav 2
+              表格
             </span>
             }
           >
@@ -47,48 +50,6 @@ function LayoutMain(props) {
             <Menu.Item key="6">option6</Menu.Item>
             <Menu.Item key="7">option7</Menu.Item>
             <Menu.Item key="8">option8</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub3"
-            title={
-              <span>
-              <Icon type="notification"/>
-              subnav 3
-            </span>
-            }
-          >
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub3"
-            title={
-              <span>
-              <Icon type="notification"/>
-              subnav 3
-            </span>
-            }
-          >
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
-          </SubMenu>
-          <SubMenu
-            key="sub3"
-            title={
-              <span>
-              <Icon type="notification"/>
-              subnav 3
-            </span>
-            }
-          >
-            <Menu.Item key="9">option9</Menu.Item>
-            <Menu.Item key="10">option10</Menu.Item>
-            <Menu.Item key="11">option11</Menu.Item>
-            <Menu.Item key="12">option12</Menu.Item>
           </SubMenu>
         </Menu>
       </Sider>
@@ -106,8 +67,10 @@ function LayoutMain(props) {
           </Menu>
         </Header>
         <Layout style={{padding: '0 24px 24px'}}>
-          <Breadcrumb style={{margin: '16px 0'}}>
-
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+            <Breadcrumb.Item>List</Breadcrumb.Item>
+            <Breadcrumb.Item>App</Breadcrumb.Item>
           </Breadcrumb>
           <Content>
             {children}

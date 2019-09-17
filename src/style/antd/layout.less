@@ -1,10 +1,32 @@
 .ant-layout-has-sider{
   height: 100%;
+  overflow: hidden;
+  .ant-layout-header{
+    background-color: #08263a;
+    ul.ant-menu-horizontal{
+      background-color: #08263a;
+    }
+  }
   .ant-layout-sider-children{
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #152f40;
     ul.ant-menu-root{
       height: auto !important;
+      background-color: #152f40;
+      .ant-menu-submenu-title{
+        background-color: #152f40;
+      }
+      li{
+        background-color: #032135;
+        margin: 0;
+        color: white;
+      }
+      li.ant-menu-item-selected{
+        background-color: #fefefe;
+        color: #1890ff;
+      }
     }
   }
 }
