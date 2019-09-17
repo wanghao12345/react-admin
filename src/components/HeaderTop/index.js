@@ -1,5 +1,6 @@
 import React from 'react';
-import { Menu, Layout } from "antd";
+import { Menu, Layout, Icon } from "antd";
+import './style.less'
 
 const { Header } = Layout
 
@@ -7,6 +8,10 @@ const { Header } = Layout
 function HeaderTop() {
   return (
     <Header className="header">
+      <Icon
+        className="changeFullScreen"
+        type="menu-fold"
+      />
       <Menu
         theme="dark"
         mode="horizontal"

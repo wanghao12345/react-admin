@@ -2,14 +2,14 @@
  * Created by wanghao on 2019/9/14
  */
 import React from 'react';
-import {Layout, Menu, Breadcrumb, Icon} from 'antd'
+import { Layout } from 'antd'
 import Logo from '@/components/Logo'
 import SiderMenu from '@/components/SiderMenu'
 import HeaderTop from '@/components/HeaderTop'
+import BreadCrumb from '@/components/BreadCrumb'
 import '@/style/antd/index.less'
 
-const {SubMenu} = Menu;
-const {Header, Content, Sider} = Layout;
+const { Content, Sider } = Layout;
 
 function LayoutMain(props) {
   const {children} = props
@@ -24,11 +24,7 @@ function LayoutMain(props) {
       <Layout>
         <HeaderTop />
         <Layout style={{padding: '0 24px 24px'}}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          <BreadCrumb />
           <Content>
             {children}
           </Content>
