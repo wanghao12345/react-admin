@@ -1,16 +1,19 @@
 import React from 'react';
 import { Menu, Layout, Icon } from "antd";
+import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import './style.less'
 
 const { Header } = Layout
 
 
-function HeaderTop() {
+function HeaderTop(props) {
   return (
     <Header className="header">
       <Icon
         className="changeFullScreen"
-        type="menu-fold"
+        type={props.fullScreen ? 'menu-unfold' : 'menu-fold'}
+        onClick={props.handleChangeFullScreen}
       />
       <Menu
         theme="dark"
@@ -20,10 +23,34 @@ function HeaderTop() {
       >
         <Menu.Item key="1">nav 1</Menu.Item>
         <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
+        <Menu.Item key="3">{props.fullScreen ? '全屏' : '不全屏'}</Menu.Item>
       </Menu>
     </Header>
   );
 }
 
-export default HeaderTop;
+/**
+ * 将仓库的state映射到props(获取state)
+ */
+const mapStateToProps = (state) => {
+  return {
+    fullScreen: state.getIn(['header', 'fullScreen'])
+  }
+}
+
+/**
+ * 将dispatch映射到props(改变state)
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // 改变
+    handleChangeFullScreen () {
+      dispatch(actionCreators.changeFullscreen())
+    }
+  }
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HeaderTop);

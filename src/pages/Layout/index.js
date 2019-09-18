@@ -7,6 +7,7 @@ import Logo from '@/components/Logo'
 import SiderMenu from '@/components/SiderMenu'
 import HeaderTop from '@/components/HeaderTop'
 import BreadCrumb from '@/components/BreadCrumb'
+import { connect } from 'react-redux'
 import '@/style/antd/index.less'
 
 const { Content, Sider } = Layout;
@@ -15,7 +16,7 @@ function LayoutMain(props) {
   const {children} = props
   return (
     <Layout>
-      <Sider width={200} style={{background: '#fff'}}>
+      <Sider width={props.fullScreen ? 0 : 200} style={{background: '#fff'}}>
         <div className="logo">
           <Logo />
         </div>
@@ -34,4 +35,25 @@ function LayoutMain(props) {
   );
 }
 
-export default LayoutMain;
+/**
+ * 将仓库的state映射到props(获取state)
+ */
+const mapStateToProps = (state) => {
+  return {
+    fullScreen: state.getIn(['header', 'fullScreen'])
+  }
+}
+
+/**
+ * 将dispatch映射到props(改变state)
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LayoutMain);
