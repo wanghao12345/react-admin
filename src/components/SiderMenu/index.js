@@ -1,9 +1,24 @@
 import React from 'react';
 import { Menu, Icon } from "antd";
+import menuList from '@/router/config'
 
 const { SubMenu } = Menu
 
 function SiderMenu() {
+  let menus = []
+  menuList.menus.map((item, index) => {
+    if (item.subs) {
+
+    } else {
+
+    }
+
+
+    menus.push(<Menu.Item key="0">
+      <Icon type="mobile" />
+      首页
+    </Menu.Item>)
+  });
   return (
     <Menu
       mode="inline"
@@ -11,8 +26,9 @@ function SiderMenu() {
       defaultOpenKeys={['sub1']}
       style={{height: '100%', borderRight: 0}}
     >
+      {menus}
       <Menu.Item key="0">
-        <Icon type="copy" />
+        <Icon type="mobile" />
         首页
       </Menu.Item>
       <SubMenu
