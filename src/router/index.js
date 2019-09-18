@@ -7,8 +7,6 @@ import Menu1 from '../pages/menu1'
 import Menu2 from '../pages/menu2'
 import Home from '../pages/Home'
 
-
-
 const BasicRoute = () => (
   <HashRouter>
     <Switch>
