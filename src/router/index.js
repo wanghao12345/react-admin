@@ -2,27 +2,49 @@
  * Created by wanghao on 2019/9/14
  */
 import React from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import Menu1 from '../pages/menu1'
-import Menu2 from '../pages/menu2'
-import Home from '../pages/Home'
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
 import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import Layout from '../pages/Layout'
+import config from './config'
+import AllComponents from '../pages'
+import ReactDocumentTitle from 'react-document-title'
 
+const BasicRoute = () => {
+  let routers = [];
+  Object.keys(config).map(key => {
+    config[key].map(r => {
+      const route = r => {
+        const Component = AllComponents[r.component]
+        routers.push(<Route
+          key={r.key}
+          exact
+          path={r.key}
+          render={
+            () => (
+              <ReactDocumentTitle title={r.title + ' - 后台管理系统'}>
+                <Component />
+              </ReactDocumentTitle>
+            )
+          }
+        />)
+      }
+      return r.component ? route(r) : r.subs.map( r => route(r))
+    })
+  })
 
-const BasicRoute = () => (
-  <BrowserRouter>
-    <Switch>
-      <Layout>
-        <Route exact path="/app/menu1" name="menu1" component={Menu1}></Route>
-        <Route exact path="/app/menu2" name="menu2" component={Menu2}></Route>
-        <Route exact path="/app/home" name="home" component={Home}></Route>
-        <Route path="/404" name="404" component={NotFound} />
-        <Route path="/login" name="login" component={Login} />
-      </Layout>
-    </Switch>
-  </BrowserRouter>
-)
-
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Layout>
+          { routers }
+          <Route path="/login" component={Login} />
+          <Route path="/404" component={NotFound} />
+          <Redirect to="/404" />
+        </Layout>
+      </Switch>
+    </BrowserRouter>
+  )
+}
+console.log(BasicRoute);
 export default BasicRoute

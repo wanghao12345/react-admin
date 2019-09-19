@@ -13,7 +13,10 @@ import '@/style/antd/index.less'
 const { Content, Sider } = Layout;
 
 function LayoutMain(props) {
+  console.log(props);
+
   const {children, location} = props
+
   if (location.pathname === '/login') {
     return (
       <div>

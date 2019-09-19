@@ -3,7 +3,8 @@ export default {
     {
       key: '/app/home',
       title: '首页',
-      icon: 'mobile'
+      icon: 'mobile',
+      component: 'Home'
     },
     {
       key: '/app/menu',
@@ -12,11 +13,13 @@ export default {
       subs: [
         {
           key: '/app/menu1',
-          title: '菜单1'
+          title: '菜单1',
+          component: 'Menu1'
         },
         {
           key: '/app/menu2',
-          title: '菜单2'
+          title: '菜单2',
+          component: 'Menu2'
         }
       ]
     }
