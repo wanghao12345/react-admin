@@ -11,11 +11,11 @@ export default {
       icon: 'scan',
       subs: [
         {
-          key: '/app/menu/menu1',
+          key: '/app/menu1',
           title: '菜单1'
         },
         {
-          key: '/app/menu/menu2',
+          key: '/app/menu2',
           title: '菜单2'
         }
       ]

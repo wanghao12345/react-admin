@@ -20,7 +20,7 @@ function LayoutMain(props) {
         <div className="logo">
           <Logo />
         </div>
-        <SiderMenu />
+        <SiderMenu props={props} />
       </Sider>
       <Layout>
         <HeaderTop />
