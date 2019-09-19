@@ -8,16 +8,28 @@ function SiderMenu() {
   let menus = []
   menuList.menus.map((item, index) => {
     if (item.subs) {
-
+      menus.push(
+        <SubMenu
+          key={item.key}
+          title={
+            <span>
+              <Icon type={item.icon}/>
+              {item.title}
+              </span>
+          }
+        >
+          {
+            item.subs.map((item1, index1) => {
+              return <Menu.Item key={ item1.key }>{ item1.title }</Menu.Item>
+            })
+          }
+      </SubMenu>)
     } else {
-
+      menus.push(<Menu.Item key={ item.key}>
+        <Icon type={item.icon} />
+        {item.title}
+      </Menu.Item>)
     }
-
-
-    menus.push(<Menu.Item key="0">
-      <Icon type="mobile" />
-      首页
-    </Menu.Item>)
   });
   return (
     <Menu
@@ -26,25 +38,32 @@ function SiderMenu() {
       defaultOpenKeys={['sub1']}
       style={{height: '100%', borderRight: 0}}
     >
-      {menus}
-      <Menu.Item key="0">
-        <Icon type="mobile" />
-        首页
-      </Menu.Item>
-      <SubMenu
-        key="sub1"
-        title={
-          <span>
-              <Icon type="user"/>
-              首页
-            </span>
-        }
-      >
-        <Menu.Item key="1">option1</Menu.Item>
-        <Menu.Item key="2">option2</Menu.Item>
-        <Menu.Item key="3">option3</Menu.Item>
-        <Menu.Item key="4">option4</Menu.Item>
-      </SubMenu>
+      {
+        menuList.menus.map((item) => {
+          if (item.subs) {
+            return <SubMenu
+              key={item.key}
+              title={
+                <span>
+                  <Icon type={item.icon}/>
+                  {item.title}
+                </span>
+              }
+              >
+              {
+                item.subs.map((item1) => {
+                  return <Menu.Item key={ item1.key }>{ item1.title }</Menu.Item>
+                })
+              }
+              </SubMenu>
+          } else {
+            return <Menu.Item key={ item.key}>
+              <Icon type={item.icon} />
+              {item.title}
+            </Menu.Item>
+          }
+        })
+      }
     </Menu>
   );
 }

@@ -2,7 +2,7 @@
  * Created by wanghao on 2019/9/15
  */
 import React from 'react'
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
 import NotFound from './pages/NotFound'
 import Login from './pages/Login'
 import App from './App'
@@ -13,7 +13,7 @@ import { GlobalStyled } from './style'
 
 export default () => (
   <Provider store={store}>
-    <HashRouter>
+    <BrowserRouter>
       <GlobalStyled />
       <Switch>
         <Route exact path="/" render={
@@ -24,7 +24,7 @@ export default () => (
         <Route path="/login" component={Login} />
         <Route component={NotFound} />
       </Switch>
-    </HashRouter>
+    </BrowserRouter>
   </Provider>
 );
 
