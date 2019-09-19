@@ -3,9 +3,10 @@
  */
 import React from 'react';
 
-function Login() {
+function Login(props) {
+  const { history } = props
   return (
-    <div className="LoginWrapper">
+    <div className="LoginWrapper" onClick={() => history.push('/app/home')}>
       login
     </div>
   );

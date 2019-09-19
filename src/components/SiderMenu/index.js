@@ -12,6 +12,7 @@ function SiderMenu(props) {
       defaultSelectedKeys={['1']}
       defaultOpenKeys={['sub1']}
       style={{height: '100%', borderRight: 0}}
+      selectedKeys={[props.location.pathname]}
     >
       {
         menuList.menus.map((item) => {

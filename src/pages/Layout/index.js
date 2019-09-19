@@ -13,27 +13,40 @@ import '@/style/antd/index.less'
 const { Content, Sider } = Layout;
 
 function LayoutMain(props) {
-  const {children} = props
-  return (
-    <Layout>
-      <Sider width={props.fullScreen ? 0 : 200} style={{background: '#fff'}}>
-        <div className="logo">
-          <Logo />
-        </div>
-        <SiderMenu props={props} />
-      </Sider>
+  const {children, location} = props
+  if (location.pathname === '/login') {
+    return (
+      <div>
+        {children}
+      </div>
+    )
+  } else {
+    return (
       <Layout>
-        <HeaderTop />
-        <Layout style={{padding: '0 24px 24px'}}>
-          <BreadCrumb />
-          <Content>
-            {children}
-          </Content>
+        <Sider width={props.fullScreen ? 0 : 200} style={{background: '#fff'}}>
+          <div className="logo">
+            <Logo />
+          </div>
+          <SiderMenu location={ location } />
+        </Sider>
+        <Layout>
+          <HeaderTop />
+          <Layout style={{padding: '0 24px 24px'}}>
+            <BreadCrumb />
+            <Content>
+              {children}
+            </Content>
+          </Layout>
         </Layout>
       </Layout>
-    </Layout>
-  );
+    );
+  }
 }
+
+
+
+
+
 
 /**
  * 将仓库的state映射到props(获取state)
