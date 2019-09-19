@@ -40,11 +40,9 @@ const BasicRoute = () => {
           { routers }
           <Route path="/login" component={Login} />
           <Route path="/404" component={NotFound} />
-          <Redirect to="/404" />
         </Layout>
       </Switch>
     </BrowserRouter>
   )
 }
-console.log(BasicRoute);
 export default BasicRoute

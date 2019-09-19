@@ -13,8 +13,6 @@ import '@/style/antd/index.less'
 const { Content, Sider } = Layout;
 
 function LayoutMain(props) {
-  console.log(props);
-
   const {children, location} = props
 
   if (location.pathname === '/login') {
@@ -35,7 +33,7 @@ function LayoutMain(props) {
         <Layout>
           <HeaderTop />
           <Layout style={{padding: '0 24px 24px'}}>
-            <BreadCrumb />
+            <BreadCrumb location={ location } />
             <Content>
               {children}
             </Content>
