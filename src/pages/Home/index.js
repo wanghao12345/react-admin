@@ -5,7 +5,7 @@ import React from 'react';
 
 function Home(props) {
   return (
-    <div className="HomeWrapper">
+    <div className="HomeWrapper" onClick={() => props.history.push('/login')}>
       home
     </div>
   );

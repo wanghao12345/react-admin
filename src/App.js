@@ -1,13 +1,16 @@
 import React from 'react';
 import Routes from './router'
-import Layout from './pages/Layout'
+import { Provider } from "react-redux";
+import store from "./store";
+import { GlobalStyled } from "./style";
 
 function App() {
   return (
     <div className="App" style={{height: '100%'}}>
-      <Layout>
+      <Provider store={store}>
+        <GlobalStyled />
         <Routes />
-      </Layout>
+      </Provider>
     </div>
   );
 }

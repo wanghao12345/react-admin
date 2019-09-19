@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Page from './Page'
+import App from './App'
 
 import 'antd/dist/antd.css'
 import './style/index.less'
 
 ReactDOM.render(
-  <Page />,
+  <App />,
   document.getElementById('root')
 );
