@@ -17,7 +17,7 @@ function Login(props) {
   const canvasConfig = {
     pointColor: '169,244,1',
     lineColor: '255,255,255',
-    count: 200
+    count: 50
   };
 
   // 登录
@@ -26,7 +26,7 @@ function Login(props) {
     props.form.validateFields((err, values) => {
       if (!err) {
         props.handleSaveUserInfo(values)
-        if (location.state.from) {
+        if (location.state && location.state.from) {
           history.push(location.state.from)
         } else {
           history.push('/app/home')
