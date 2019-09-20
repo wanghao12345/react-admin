@@ -3,8 +3,6 @@ import {Breadcrumb} from "antd";
 import config from '../../router/config'
 
 function BreadCrumb(props) {
-  console.log(props);
-
   const { location } = props
   let arr = []
   Object.keys(config).map(key => {
@@ -20,7 +18,6 @@ function BreadCrumb(props) {
       return r.component ? route(r) : r.subs.map( r => route(r))
     })
   });
-  console.log(arr);
 
   return (
     <Breadcrumb style={{ margin: '16px 0' }}>

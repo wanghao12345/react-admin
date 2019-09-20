@@ -2,7 +2,7 @@
  * Created by wanghao on 2019/9/14
  */
 import React from 'react'
-import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter } from 'react-router-dom'
 import NotFound from "../pages/NotFound";
 import Login from "../pages/Login";
 import Layout from '../pages/Layout'
