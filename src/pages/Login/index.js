@@ -3,6 +3,8 @@
  */
 import React from 'react';
 import ReactCanvasNest from 'react-canvas-nest'
+import { connect } from 'react-redux'
+import { actionCreators } from './store'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import {
   LoginWrapper,
@@ -23,8 +25,9 @@ function Login(props) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        history.push('/app/home')
+        // history.push('/app/home')
         console.log('Received values of form: ', values);
+        props.handleSaveUserInfo(values)
       }
     });
   };
@@ -80,6 +83,26 @@ function Login(props) {
   );
 }
 
-const WrappedLoginForm = Form.create()(Login);
-export default WrappedLoginForm;
+/**
+ * 将仓库的state映射到props(获取state)
+ */
+const mapStateToProps = (state) => {
+  return {
 
+  }
+}
+
+/**
+ * 将dispatch映射到props(改变state)
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // 改变
+    handleSaveUserInfo (data) {
+      dispatch(actionCreators.saveUserInfo(data))
+    }
+  }
+}
+
+const WrappedLoginForm = Form.create()(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(WrappedLoginForm);

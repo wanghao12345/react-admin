@@ -23,7 +23,7 @@ function BreadCrumb(props) {
   return (
     <Breadcrumb style={{ margin: '16px 0' }}>
       {
-        arr.map(r => (<Breadcrumb.Item key={r}>{ r }</Breadcrumb.Item>))
+        arr.map(r => (<Breadcrumb.Item key={ r }>{ r }</Breadcrumb.Item>))
       }
     </Breadcrumb>
   );
