@@ -2,15 +2,17 @@
  * Created by wanghao on 2019/9/14
  */
 import React from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import NotFound from "../pages/NotFound";
+import { Route, Switch, Redirect, BrowserRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Login from "../pages/Login";
 import Layout from '../pages/Layout'
 import config from './config'
 import AllComponents from '../pages'
 import ReactDocumentTitle from 'react-document-title'
 
-const BasicRoute = () => {
+const BasicRoute = (props) => {
+  console.log(props);
+  const { userInfo } = props
   let routers = [];
   Object.keys(config).map(key => {
     config[key].map(r => {
@@ -27,7 +29,10 @@ const BasicRoute = () => {
                   <Component />
                 </ReactDocumentTitle>
               )
-              return wrappedComponent
+              return userInfo ? wrappedComponent : (<Redirect to={{
+                pathname: '/login',
+                state: { from: props.location }
+              }}/>)
             }
           }
         />)
@@ -42,10 +47,19 @@ const BasicRoute = () => {
         <Layout>
           { routers }
           <Route path="/login" component={Login} />
-          <Route path="/404" component={NotFound} />
         </Layout>
       </Switch>
     </BrowserRouter>
   )
 }
-export default BasicRoute
+
+
+/**
+ * 将仓库的state映射到props(获取state)
+ */
+const mapStateToProps = (state) => {
+  return {
+    userInfo: state.getIn(['user', 'userInfo'])
+  }
+}
+export default connect(mapStateToProps, null)(BasicRoute)

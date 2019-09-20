@@ -25,7 +25,7 @@ function Login(props) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        // history.push('/app/home')
+        history.push('/app/home')
         console.log('Received values of form: ', values);
         props.handleSaveUserInfo(values)
       }
@@ -84,15 +84,6 @@ function Login(props) {
 }
 
 /**
- * 将仓库的state映射到props(获取state)
- */
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-
-/**
  * 将dispatch映射到props(改变state)
  */
 const mapDispatchToProps = (dispatch) => {
@@ -105,4 +96,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const WrappedLoginForm = Form.create()(Login);
-export default connect(mapStateToProps, mapDispatchToProps)(WrappedLoginForm);
+export default connect(null, mapDispatchToProps)(WrappedLoginForm);
