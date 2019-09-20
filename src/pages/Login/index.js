@@ -25,9 +25,8 @@ function Login(props) {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        history.push('/app/home')
-        console.log('Received values of form: ', values);
         props.handleSaveUserInfo(values)
+        history.push('/app/home')
       }
     });
   };
