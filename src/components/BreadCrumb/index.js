@@ -17,12 +17,13 @@ function BreadCrumb(props) {
       }
       return r.component ? route(r) : r.subs.map( r => route(r))
     })
+    return key
   });
 
   return (
     <Breadcrumb style={{ margin: '16px 0' }}>
       {
-        arr.map(r => (<Breadcrumb.Item>{ r }</Breadcrumb.Item>))
+        arr.map(r => (<Breadcrumb.Item key={r}>{ r }</Breadcrumb.Item>))
       }
     </Breadcrumb>
   );

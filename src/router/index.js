@@ -21,18 +21,21 @@ const BasicRoute = () => {
           exact
           path={r.key}
           render={
-            () => (
-              <ReactDocumentTitle title={r.title + ' - 后台管理系统'}>
-                <Component />
-              </ReactDocumentTitle>
-            )
+            () => {
+              const wrappedComponent = (
+                <ReactDocumentTitle title={r.title + ' - 后台管理系统'}>
+                  <Component />
+                </ReactDocumentTitle>
+              )
+              return wrappedComponent
+            }
           }
         />)
       }
       return r.component ? route(r) : r.subs.map( r => route(r))
     })
-  })
-
+    return key
+  });
   return (
     <BrowserRouter>
       <Switch>
