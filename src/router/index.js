@@ -11,7 +11,6 @@ import AllComponents from '../pages'
 import ReactDocumentTitle from 'react-document-title'
 
 const BasicRoute = (props) => {
-  console.log(props);
   const { userInfo } = props
   let routers = [];
   Object.keys(config).map(key => {
@@ -31,7 +30,7 @@ const BasicRoute = (props) => {
               )
               return userInfo ? wrappedComponent : (<Redirect to={{
                 pathname: '/login',
-                state: { from: props.location }
+                state: { from: r.key }
               }}/>)
             }
           }

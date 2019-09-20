@@ -12,7 +12,7 @@ import {
 } from './style'
 
 function Login(props) {
-  const { history } = props
+  const { history, location } = props
   const { getFieldDecorator } = props.form;
   const canvasConfig = {
     pointColor: '169,244,1',
@@ -26,7 +26,11 @@ function Login(props) {
     props.form.validateFields((err, values) => {
       if (!err) {
         props.handleSaveUserInfo(values)
-        history.push('/app/home')
+        if (location.state.from) {
+          history.push(location.state.from)
+        } else {
+          history.push('/app/home')
+        }
       }
     });
   };
