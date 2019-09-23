@@ -8,6 +8,25 @@ export default {
       breadCrumb: ['首页']
     },
     {
+      key: '/app/d3',
+      title: 'd3示例',
+      icon: 'bar-chart',
+      subs: [
+        {
+          key: '/app/d3/bar',
+          title: '柱状图',
+          component: 'D3Bar',
+          breadCrumb: ['d3示例', '柱状图']
+        },
+        {
+          key: '/app/d3/line',
+          title: '折线图',
+          component: 'D3Line',
+          breadCrumb: ['d3示例', '折线图']
+        }
+      ]
+    },
+    {
       key: '/app/menu',
       title: '菜单',
       icon: 'scan',
