@@ -28,10 +28,11 @@ const BasicRoute = (props) => {
                   <Component />
                 </ReactDocumentTitle>
               )
-              return userInfo ? wrappedComponent : (<Redirect to={{
-                pathname: '/login',
-                state: { from: r.key }
-              }}/>)
+              return wrappedComponent
+              // return userInfo ? wrappedComponent : (<Redirect to={{
+              //   pathname: '/login',
+              //   state: { from: r.key }
+              // }}/>)
             }
           }
         />)
