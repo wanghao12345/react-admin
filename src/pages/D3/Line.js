@@ -2,7 +2,7 @@ import React from 'react'
 
 function Line() {
   return (
-    <div>折线图</div>
+    <div>待做~</div>
   )
 }
 
