@@ -15,10 +15,14 @@ function Home() {
     <HomeWrapper>
       <HomeTopWrapper>
         <PieWrapper>
-          <Panel></Panel>
+          <Panel title="环形图">
+
+          </Panel>
         </PieWrapper>
         <MapWrapper>
-          <Panel></Panel>
+          <Panel title="地图">
+
+          </Panel>
         </MapWrapper>
         <RollWrapper>
           <Panel></Panel>

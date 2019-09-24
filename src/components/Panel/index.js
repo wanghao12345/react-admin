@@ -1,11 +1,18 @@
 import React, {useState} from 'react'
-import {PanelTopWrapper, PanelWrapper} from "./style";
+import {
+  PanelTopWrapper,
+  PanelBottomWrapper,
+  PanelWrapper,
+  PanelTitle
+} from "./style";
 import {Icon} from "antd";
 import {CSSTransition} from "react-transition-group";
 
 
-function Panel() {
-  const [panel, setPanel] = useState(false)
+function Panel(props) {
+  console.log(props);
+  const [panel, setPanel] = useState(false);
+  const {title, children} = props
   return (
     <CSSTransition
       in={panel}
@@ -14,12 +21,18 @@ function Panel() {
     >
       <PanelWrapper>
         <PanelTopWrapper>
+          <PanelTitle>
+            {title}
+          </PanelTitle>
           <Icon
             className="fullscreen"
             type={panel ? 'fullscreen-exit' : 'fullscreen'}
             onClick={() => setPanel(!panel)}
           />
         </PanelTopWrapper>
+        <PanelBottomWrapper>
+          {children}
+        </PanelBottomWrapper>
       </PanelWrapper>
     </CSSTransition>
   )
