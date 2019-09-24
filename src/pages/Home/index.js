@@ -8,15 +8,15 @@ import {
   RollWrapper,
   HomeBottomWrapper
 } from './style'
+import PanelPie from './components/PanelPie'
 
 function Home() {
-
   return (
     <HomeWrapper>
       <HomeTopWrapper>
         <PieWrapper>
           <Panel title="环形图">
-
+            <PanelPie />
           </Panel>
         </PieWrapper>
         <MapWrapper>
@@ -25,11 +25,15 @@ function Home() {
           </Panel>
         </MapWrapper>
         <RollWrapper>
-          <Panel></Panel>
+          <Panel title="字幕滚动">
+
+          </Panel>
         </RollWrapper>
       </HomeTopWrapper>
       <HomeBottomWrapper>
-        <Panel></Panel>
+        <Panel title="折线图">
+
+        </Panel>
       </HomeBottomWrapper>
     </HomeWrapper>
   );
