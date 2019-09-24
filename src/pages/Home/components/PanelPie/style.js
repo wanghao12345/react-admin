@@ -8,6 +8,6 @@ export const PanelPieWrapper = styled.div`
 `
 
 export const PieItem = styled.div`
-  width: 33.3%;
+  width: 50%;
   height: 50%;
 `

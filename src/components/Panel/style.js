@@ -46,6 +46,7 @@ export const PanelTopWrapper = styled.div`
 `;
 export const PanelTitle = styled.h3`
     font-size: 15px;
+    margin: 0;
 `;
 export const PanelBottomWrapper = styled.div`
     width: 100%;
