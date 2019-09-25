@@ -34,7 +34,7 @@ function LayoutMain(props) {
           <HeaderTop />
           <Layout style={{padding: '0 20px 20px'}}>
             <BreadCrumb location={ location } />
-            <Content style={{overflow: "auto"}}>
+            <Content>
               {children}
             </Content>
           </Layout>

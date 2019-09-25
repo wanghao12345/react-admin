@@ -1,10 +1,14 @@
-import React, {useEffect} from 'react'
+import React, {useState,useEffect} from 'react'
 import {PanelPieWrapper, PieItem} from './style'
 import Pie from '@/components/Pie'
 
 
 function PanelPie() {
-  const pieList = [{}, {}, {}, {}]
+  const pieList = [{}, {}, {}, {}];
+  const pieStyle = {
+    width: 205,
+    height: 185
+  }
 
   useEffect(() => {
     const pie = new Pie()
@@ -15,11 +19,11 @@ function PanelPie() {
   }, [])
 
   return (
-    <PanelPieWrapper>
+    <PanelPieWrapper id="PanelPieWrapper">
       {
         pieList.map((item, index) => {
           return <PieItem key={index}>
-            <div id={'pie-' + index} style={{width: 205, height: 185}}></div>
+            <div id={'pie-' + index} style={pieStyle}></div>
           </PieItem>
         })
       }
