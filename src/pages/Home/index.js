@@ -9,6 +9,7 @@ import {
   HomeBottomWrapper
 } from './style'
 import PanelPie from './components/PanelPie'
+import PanelMap from './components/PanelMap'
 
 function Home() {
   return (
@@ -21,7 +22,7 @@ function Home() {
         </PieWrapper>
         <MapWrapper>
           <Panel title="地图">
-
+            <PanelMap />
           </Panel>
         </MapWrapper>
         <RollWrapper>

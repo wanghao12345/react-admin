@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
 export const HomeWrapper = styled.div`
-  width: 1672px;
-  height: 850px;
-  padding-bottom: 30px;
-  padding-right: 5px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
   position: relative;
 `;
 export const HomeTopWrapper = styled.div`

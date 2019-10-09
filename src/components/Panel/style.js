@@ -8,6 +8,7 @@ export const PanelWrapper = styled.div`
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     &:hover{
         box-shadow: 0px 0px 5px #dedede;
     }
