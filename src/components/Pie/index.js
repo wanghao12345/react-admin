@@ -1,16 +1,16 @@
 import echarts from 'echarts'
 class Pie {
 
-  constructor() {
-
+  constructor (id, opt) {
+    this.initChart(id, opt)
   }
   /**
    * 初始化
    * @param option
    * @param echartId
    */
-  initChart (echartId, opt) {
-    const container = eval("document.getElementById('" + echartId + "')");
+  initChart (id, opt) {
+    const container = document.getElementById(id);
     const option = {
       grid: {
         width: '100%',

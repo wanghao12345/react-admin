@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React, { useEffect } from 'react'
 import {PanelPieWrapper, PieItem} from './style'
 import Pie from '@/components/Pie'
 
@@ -11,11 +11,10 @@ function PanelPie() {
   }
 
   useEffect(() => {
-    const pie = new Pie()
-    pie.initChart('pie-0')
-    pie.initChart('pie-1')
-    pie.initChart('pie-2')
-    pie.initChart('pie-3')
+    new Pie('pie-0')
+    new Pie('pie-1')
+    new Pie('pie-2')
+    new Pie('pie-3')
   }, [])
 
   return (

@@ -32,7 +32,7 @@ function LayoutMain(props) {
         </Sider>
         <Layout>
           <HeaderTop />
-          <Layout style={{padding: '0 20px 20px'}}>
+          <Layout style={{padding: '0 20px 20px', overflow: 'auto'}}>
             <BreadCrumb location={ location } />
             <Content>
               {children}
