@@ -1,13 +1,10 @@
 import React from 'react'
 import { ItemWrapper } from './style'
 
-class SourceItem extends React.Component{
+class SourceItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      drag: ''
-    };
-
+    this.state = {};
     this.handleMoveItem = this.handleMoveItem.bind(this)
     this.handleCloneMoveItem = this.handleCloneMoveItem.bind(this)
   }
@@ -16,18 +13,20 @@ class SourceItem extends React.Component{
     this.handleMoveItem()
   }
 
-  render () {
+  render() {
     return (
       <ItemWrapper
         ref="drag"
-      ><div>item</div></ItemWrapper>
+      >
+        <div>item</div>
+      </ItemWrapper>
     )
   }
 
   /**
    * 移动DOM
    */
-  handleMoveItem () {
+  handleMoveItem() {
     // const drag = document.getElementById('drag');
     const drag = this.refs.drag;
     const _self = this
@@ -48,11 +47,12 @@ class SourceItem extends React.Component{
         cloneDrag.style.top = top + 'px';
       }
 
-      // 鼠标弹开
+      // 鼠标放开
       document.onmouseup = function (e) {
         document.onmousedown = null
         document.onmousemove = null
         console.log('结束移动。。。');
+        _self.handleMoveUp()
       }
     }
   }
@@ -60,7 +60,7 @@ class SourceItem extends React.Component{
   /**
    * 克隆移动目标DOM
    */
-  handleCloneMoveItem (drag) {
+  handleCloneMoveItem(drag) {
     // 深度克隆
     const cloneDrag = drag.cloneNode(true);
     cloneDrag.setAttribute('style',
@@ -75,6 +75,10 @@ class SourceItem extends React.Component{
     console.log(drag);
     console.log(cloneDrag);
     return cloneDrag
+  }
+
+  handleMoveUp() {
+    this.props.handleMoveUp()
   }
 }
 
