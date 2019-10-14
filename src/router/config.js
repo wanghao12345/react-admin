@@ -27,6 +27,19 @@ export default {
       ]
     },
     {
+      key: '/app/drag',
+      title: '拖拽',
+      icon: 'bg-colors',
+      subs: [
+        {
+          key: '/app/drag/pie',
+          title: '饼图',
+          component: 'DragPie',
+          breadCrumb: ['拖拽', '饼图']
+        }
+      ]
+    },
+    {
       key: '/app/menu',
       title: '菜单',
       icon: 'scan',
