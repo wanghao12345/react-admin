@@ -27,7 +27,6 @@ class SourceItem extends React.Component {
    * 移动DOM
    */
   handleMoveItem() {
-    // const drag = document.getElementById('drag');
     const drag = this.refs.drag;
     const _self = this
     // 鼠标按下
@@ -39,8 +38,8 @@ class SourceItem extends React.Component {
       console.log(diffX, diffY);
 
       // 鼠标移动
-      document.onmousemove = function (e) {
-        console.log('移动中。。。');
+      cloneDrag.onmousemove = function (e) {
+        console.log('鼠标的坐标：', e.clientX, e.clientY);
         const left = e.clientX - diffX;
         const top = e.clientY - diffY;
         cloneDrag.style.left = left + 'px';
@@ -48,11 +47,13 @@ class SourceItem extends React.Component {
       }
 
       // 鼠标放开
-      document.onmouseup = function (e) {
-        document.onmousedown = null
-        document.onmousemove = null
+      cloneDrag.onmouseup = function (e) {
+        // drag.onmousedown = null
+        cloneDrag.onmousemove = null
+        document.body.removeChild(cloneDrag)
         console.log('结束移动。。。');
-        _self.handleMoveUp()
+        // 判断鼠标是否在某个区域内
+        _self.handleMoveUp(cloneDrag)
       }
     }
   }
@@ -72,13 +73,14 @@ class SourceItem extends React.Component {
       `
     );
     document.body.appendChild(cloneDrag)
-    console.log(drag);
-    console.log(cloneDrag);
     return cloneDrag
   }
 
-  handleMoveUp() {
-    this.props.handleMoveUp()
+  /**
+   * 鼠标放开
+   */
+  handleMoveUp(cloneDrag) {
+    this.props.handleMoveUp(cloneDrag)
   }
 }
 
