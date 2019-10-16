@@ -39,7 +39,6 @@ class SourceItem extends React.Component {
    * 鼠标进入drag事件
    */
   handleMouseEnter () {
-    console.log('进入了。。。')
     this.setState(() => ({
       dragBtn: {
         display: 'block'
@@ -51,7 +50,6 @@ class SourceItem extends React.Component {
    * 鼠标离开drag事件
    */
   handleMouseLeave () {
-    console.log('离开了。。。')
     this.setState(() => ({
       dragBtn: {
         display: 'none'
@@ -118,7 +116,8 @@ class SourceItem extends React.Component {
    * 鼠标放开
    */
   handleMoveUp(e, cloneDrag) {
-    this.props.handleMoveUp(e, cloneDrag)
+    const index = this.props.index
+    this.props.handleMoveUp(e, cloneDrag, index)
   }
 
 }

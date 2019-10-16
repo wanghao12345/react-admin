@@ -7,14 +7,15 @@ import {
 
 class PieDataItem extends React.Component{
   constructor(props) {
+    console.log(props);
     super(props)
   }
 
   render() {
     return (
       <PieDataWrapper>
-        <DataName></DataName>
-        <DataValue></DataValue>
+        <DataName value={this.props.value.label}></DataName>
+        <DataValue value={this.props.value.value}></DataValue>
       </PieDataWrapper>
     )
   }

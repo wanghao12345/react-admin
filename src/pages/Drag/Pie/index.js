@@ -14,8 +14,18 @@ class Pie extends React.Component{
   constructor (props) {
     super(props);
     this.state = {
-      editArr: [],
-      addArr: []
+      pieData: [
+        {
+          label: '数据',
+          value: 10,
+          status: 0
+        },
+        {
+          label: '数据',
+          value: 10,
+          status: 0
+        }
+      ]
     };
 
     this.handleMoveUp = this.handleMoveUp.bind(this)
@@ -28,17 +38,21 @@ class Pie extends React.Component{
           <OptionItemWrapper>
             <TitleWrapper>编辑数据</TitleWrapper>
             <ContentWrapper ref="editDataWrapper">
-              <SourceItem handleMoveUp={this.handleMoveUp}>
-                <PieDataItem></PieDataItem>
-              </SourceItem>
-              <SourceItem handleMoveUp={this.handleMoveUp}>
-                <PieDataItem></PieDataItem>
-              </SourceItem>
+              {
+                this.state.pieData.map((item, index) => {
+                  if (!item.status) {
+                    return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
+                      <PieDataItem value={item}></PieDataItem>
+                    </SourceItem>)
+                  }
+                })
+              }
             </ContentWrapper>
           </OptionItemWrapper>
           <OptionItemWrapper>
             <TitleWrapper>添加数据</TitleWrapper>
             <ContentWrapper ref="addDataWrapper">
+
             </ContentWrapper>
           </OptionItemWrapper>
         </OptionWrapper>
@@ -54,12 +68,15 @@ class Pie extends React.Component{
    * @param e
    * @param drag
    */
-  handleMoveUp (e, drag) {
+  handleMoveUp (e, drag, index) {
+    const pieData = this.state.pieData;
     if (this.mouseIsInWrapperArea(e, this.refs.addDataWrapper)) {
       this.refs.addDataWrapper.appendChild(drag)
+      pieData[index].status = 1
     }
     if (this.mouseIsInWrapperArea(e, this.refs.editDataWrapper)) {
       this.refs.editDataWrapper.appendChild(drag)
+      pieData[index].status = 0
     }
   }
 
