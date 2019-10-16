@@ -1,12 +1,19 @@
 import React from 'react'
-import { ItemWrapper } from './style'
+import { ItemWrapper, MoveIcon } from './style'
+import { Icon } from 'antd'
 
 class SourceItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      dragBtn: {
+        display: 'none'
+      }
+    };
     this.handleMoveItem = this.handleMoveItem.bind(this)
     this.handleCloneMoveItem = this.handleCloneMoveItem.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
   }
 
   componentDidMount() {
@@ -17,10 +24,39 @@ class SourceItem extends React.Component {
     return (
       <ItemWrapper
         ref="drag"
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
       >
-        <div>item</div>
+        <MoveIcon ref="dragBtn" style={this.state.dragBtn}>
+          <Icon type="drag" />
+        </MoveIcon>
+        {this.props.children}
       </ItemWrapper>
     )
+  }
+
+  /**
+   * 鼠标进入drag事件
+   */
+  handleMouseEnter () {
+    console.log('进入了。。。')
+    this.setState(() => ({
+      dragBtn: {
+        display: 'block'
+      }
+    }))
+  }
+
+  /**
+   * 鼠标离开drag事件
+   */
+  handleMouseLeave () {
+    console.log('离开了。。。')
+    this.setState(() => ({
+      dragBtn: {
+        display: 'none'
+      }
+    }))
   }
 
   /**
@@ -28,33 +64,35 @@ class SourceItem extends React.Component {
    */
   handleMoveItem() {
     const drag = this.refs.drag;
-    const _self = this
+    const dragBtn = this.refs.dragBtn;
+    const _self = this;
     // 鼠标按下
-    drag.onmousedown = function (e) {
+    dragBtn.onmousedown = function (e) {
       // 克隆目标元素
       const cloneDrag = _self.handleCloneMoveItem(drag);
       const diffX = e.clientX - drag.offsetLeft;
       const diffY = e.clientY - drag.offsetTop;
       console.log(diffX, diffY);
-
       // 鼠标移动
       cloneDrag.onmousemove = function (e) {
-        console.log('鼠标的坐标：', e.clientX, e.clientY);
         const left = e.clientX - diffX;
         const top = e.clientY - diffY;
         cloneDrag.style.left = left + 'px';
         cloneDrag.style.top = top + 'px';
-      }
+      };
 
       // 鼠标放开
       cloneDrag.onmouseup = function (e) {
         // drag.onmousedown = null
+        drag.onmousemove = null
         cloneDrag.onmousemove = null
         document.body.removeChild(cloneDrag)
         console.log('结束移动。。。');
         // 判断鼠标是否在某个区域内
-        _self.handleMoveUp(cloneDrag)
-      }
+        console.log('放开鼠标时的坐标：', e.clientX, e.clientY);
+        // drag.parentNode.removeChild(drag)
+        _self.handleMoveUp(e, drag)
+      };
     }
   }
 
@@ -79,9 +117,10 @@ class SourceItem extends React.Component {
   /**
    * 鼠标放开
    */
-  handleMoveUp(cloneDrag) {
-    this.props.handleMoveUp(cloneDrag)
+  handleMoveUp(e, cloneDrag) {
+    this.props.handleMoveUp(e, cloneDrag)
   }
+
 }
 
 export default SourceItem

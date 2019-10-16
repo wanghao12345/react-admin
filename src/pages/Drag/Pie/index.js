@@ -1,5 +1,6 @@
 import React from 'react'
 import SourceItem from '@/components/SourceItem'
+import PieDataItem from '@/components/PieDataItem'
 import {
   PieWrapper,
   OptionWrapper,
@@ -17,8 +18,7 @@ class Pie extends React.Component{
       addArr: []
     };
 
-    this.handleEditMoveUp = this.handleEditMoveUp.bind(this)
-    this.handleAddMoveUp = this.handleAddMoveUp.bind(this)
+    this.handleMoveUp = this.handleMoveUp.bind(this)
   }
 
   render () {
@@ -27,23 +27,18 @@ class Pie extends React.Component{
         <OptionWrapper>
           <OptionItemWrapper>
             <TitleWrapper>编辑数据</TitleWrapper>
-            <ContentWrapper>
-              <SourceItem handleMoveUp={this.handleEditMoveUp}></SourceItem>
-              {
-                this.state.editArr.map((item, index) => {
-                  return  <SourceItem handleMoveUp={this.handleEditMoveUp} key={index}></SourceItem>
-                })
-              }
+            <ContentWrapper ref="editDataWrapper">
+              <SourceItem handleMoveUp={this.handleMoveUp}>
+                <PieDataItem></PieDataItem>
+              </SourceItem>
+              <SourceItem handleMoveUp={this.handleMoveUp}>
+                <PieDataItem></PieDataItem>
+              </SourceItem>
             </ContentWrapper>
           </OptionItemWrapper>
           <OptionItemWrapper>
             <TitleWrapper>添加数据</TitleWrapper>
-            <ContentWrapper>
-              {
-                this.state.addArr.map((item, index) => {
-                  return  <SourceItem handleMoveUp={this.handleAddMoveUp} key={index}></SourceItem>
-                })
-              }
+            <ContentWrapper ref="addDataWrapper">
             </ContentWrapper>
           </OptionItemWrapper>
         </OptionWrapper>
@@ -55,23 +50,38 @@ class Pie extends React.Component{
   }
 
   /**
-   * 鼠标编辑移动结束
+   * 鼠标放开移动物体
+   * @param e
+   * @param drag
    */
-  handleEditMoveUp (drag) {
-    const arr = this.state.addArr;
-    arr.push(drag)
-
-    this.setState({
-      addArr: arr
-    })
+  handleMoveUp (e, drag) {
+    if (this.mouseIsInWrapperArea(e, this.refs.addDataWrapper)) {
+      this.refs.addDataWrapper.appendChild(drag)
+    }
+    if (this.mouseIsInWrapperArea(e, this.refs.editDataWrapper)) {
+      this.refs.editDataWrapper.appendChild(drag)
+    }
   }
 
   /**
-   * 鼠标增加移动结束
+   * 判断鼠标是否在某个区域内
    */
-  handleAddMoveUp (drag) {
+  mouseIsInWrapperArea (e, dom) {
+    const clientX = e.clientX;
+    const clientY = e.clientY;
 
+    const areaX = [dom.offsetLeft, dom.offsetLeft + dom.offsetWidth]
+    const areaY = [dom.offsetTop, dom.offsetTop + dom.offsetHeight]
+
+    if (clientX < areaX[0] || clientX > areaX[1]) {
+      return false
+    }
+    if (clientY < areaY[0] || clientY > areaY[1]) {
+      return false
+    }
+    return true
   }
+
 }
 
 export default Pie
