@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'antd'
+import { Input, Icon } from 'antd'
 import {
   PieDataWrapper
 } from './style'
@@ -14,6 +14,7 @@ class PieDataItem extends React.Component{
 
     this.handleChangeLabel = this.handleChangeLabel.bind(this)
     this.handleChangeValue = this.handleChangeValue.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
   }
 
   render() {
@@ -31,8 +32,19 @@ class PieDataItem extends React.Component{
           value={this.state.data.value}
           onChange={this.handleChangeValue}
         />
+        <Icon
+          type="close-circle"
+          onClick={this.handleDeleteItem}
+        />
       </PieDataWrapper>
     )
+  }
+
+  /**
+   * 删除Item
+   */
+  handleDeleteItem () {
+    this.props.handleDeleteItem(this.state.data)
   }
 
   /**
@@ -45,6 +57,7 @@ class PieDataItem extends React.Component{
     this.setState(() => ({
       data: data
     }))
+    this.props.handleChangeItem(this.state.data)
   }
 
   /**
@@ -57,6 +70,7 @@ class PieDataItem extends React.Component{
     this.setState(() => ({
       data: data
     }))
+    this.props.handleChangeItem(this.state.data)
   }
 
 

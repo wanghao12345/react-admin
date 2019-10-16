@@ -17,8 +17,8 @@ class Pie extends React.Component{
     this.state = {
       pieData: [
         {
-          label: '数据',
-          value: 10,
+          label: '',
+          value: '',
           status: 0
         }
       ]
@@ -26,6 +26,8 @@ class Pie extends React.Component{
 
     this.handleMoveUp = this.handleMoveUp.bind(this)
     this.handleAddDataItem = this.handleAddDataItem.bind(this)
+    this.handleChangeItem = this.handleChangeItem.bind(this)
+    this.handleDeleteItem = this.handleDeleteItem.bind(this)
   }
 
   render () {
@@ -42,7 +44,11 @@ class Pie extends React.Component{
                 this.state.pieData.map((item, index) => {
                   if (!item.status) {
                     return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
-                      <PieDataItem value={item}></PieDataItem>
+                      <PieDataItem
+                        value={item}
+                        handleChangeItem={this.handleChangeItem}
+                        handleDeleteItem={this.handleDeleteItem}
+                      ></PieDataItem>
                     </SourceItem>)
                   }
                 })
@@ -56,7 +62,11 @@ class Pie extends React.Component{
                 this.state.pieData.map((item, index) => {
                   if (item.status) {
                     return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
-                      <PieDataItem value={item}></PieDataItem>
+                      <PieDataItem
+                        value={item}
+                        handleChangeItem={this.handleChangeItem}
+                        handleDeleteItem={this.handleDeleteItem}
+                      ></PieDataItem>
                     </SourceItem>)
                   }
                 })
@@ -72,12 +82,35 @@ class Pie extends React.Component{
   }
 
   /**
+   * 删除
+   */
+  handleDeleteItem (val) {
+    const pieData = this.state.pieData
+    pieData.splice(val.index, 1);
+    this.setState({
+      pieData
+    });
+  }
+
+  /**
+   * 改变选项的值
+   */
+  handleChangeItem (val) {
+    this.setState((state) => ({
+      pieData: state.pieData.map(
+        (item, _index) =>
+          (_index === val.index ? {...item, label: val.label, value: val.value} : item)
+      )
+    }))
+  }
+
+  /**
    * 添加数据
    */
   handleAddDataItem () {
     const item = {
-      label: '数据',
-      value: 10,
+      label: '',
+      value: '',
       status: 0
     }
     this.setState((state) => ({

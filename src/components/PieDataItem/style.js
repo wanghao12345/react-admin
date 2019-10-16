@@ -12,11 +12,15 @@ export const PieDataWrapper = styled.div`
     background: rgba(0,0,0,0);
   }
   input.label {
-    width: 70%;
+    width: 60%;
     text-align: left;
   }
   input.value {
     width: 30%;
     text-align: right;
+  }
+  i{
+    margin-right: 10px;
+    color: #bbb8b8;
   }
 `;
