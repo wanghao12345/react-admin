@@ -1,6 +1,7 @@
 import React from 'react'
 import SourceItem from '@/components/SourceItem'
 import PieDataItem from '@/components/PieDataItem'
+import { Icon } from 'antd'
 import {
   PieWrapper,
   OptionWrapper,
@@ -19,16 +20,12 @@ class Pie extends React.Component{
           label: '数据',
           value: 10,
           status: 0
-        },
-        {
-          label: '数据',
-          value: 10,
-          status: 0
         }
       ]
     };
 
     this.handleMoveUp = this.handleMoveUp.bind(this)
+    this.handleAddDataItem = this.handleAddDataItem.bind(this)
   }
 
   render () {
@@ -36,7 +33,10 @@ class Pie extends React.Component{
       <PieWrapper>
         <OptionWrapper>
           <OptionItemWrapper>
-            <TitleWrapper>编辑数据</TitleWrapper>
+            <TitleWrapper>
+              编辑数据
+              <Icon onClick={this.handleAddDataItem} type="plus" />
+            </TitleWrapper>
             <ContentWrapper ref="editDataWrapper">
               {
                 this.state.pieData.map((item, index) => {
@@ -52,7 +52,15 @@ class Pie extends React.Component{
           <OptionItemWrapper>
             <TitleWrapper>添加数据</TitleWrapper>
             <ContentWrapper ref="addDataWrapper">
-
+              {
+                this.state.pieData.map((item, index) => {
+                  if (item.status) {
+                    return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
+                      <PieDataItem value={item}></PieDataItem>
+                    </SourceItem>)
+                  }
+                })
+              }
             </ContentWrapper>
           </OptionItemWrapper>
         </OptionWrapper>
@@ -64,20 +72,38 @@ class Pie extends React.Component{
   }
 
   /**
+   * 添加数据
+   */
+  handleAddDataItem () {
+    const item = {
+      label: '数据',
+      value: 10,
+      status: 0
+    }
+    this.setState((state) => ({
+      pieData: [...state.pieData, item]
+    }))
+  }
+
+  /**
    * 鼠标放开移动物体
    * @param e
    * @param drag
    */
   handleMoveUp (e, drag, index) {
-    const pieData = this.state.pieData;
+    let status = 0
     if (this.mouseIsInWrapperArea(e, this.refs.addDataWrapper)) {
-      this.refs.addDataWrapper.appendChild(drag)
-      pieData[index].status = 1
+      status = 1
     }
     if (this.mouseIsInWrapperArea(e, this.refs.editDataWrapper)) {
-      this.refs.editDataWrapper.appendChild(drag)
-      pieData[index].status = 0
+      status = 0
     }
+    this.setState((state) => ({
+      pieData: state.pieData.map(
+        (item, _index) =>
+          (_index === index ? {...item, status: status} : item)
+      )
+    }))
   }
 
   /**

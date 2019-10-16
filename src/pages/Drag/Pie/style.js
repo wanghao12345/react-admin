@@ -30,6 +30,13 @@ export const TitleWrapper = styled.div`
     line-height: 50px;
     font-weight: bold;
     border-bottom: 1px solid #d2d2d2;
+    position: relative;
+    i{
+      cursor: pointer;
+      position: absolute;
+      right: 15px;
+      top: 17px;
+    }
 `;
 export const ContentWrapper = styled.div`
     width: 100%;
