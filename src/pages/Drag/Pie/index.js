@@ -1,6 +1,7 @@
 import React from 'react'
 import SourceItem from '@/components/SourceItem'
 import PieDataItem from '@/components/PieDataItem'
+import PanelPie from './components/PanelPie'
 import { Icon } from 'antd'
 import {
   PieWrapper,
@@ -75,7 +76,7 @@ class Pie extends React.Component{
           </OptionItemWrapper>
         </OptionWrapper>
         <ShowWrapper>
-
+          <PanelPie />
         </ShowWrapper>
       </PieWrapper>
     )
