@@ -15,8 +15,12 @@ export const MoveIcon = styled.div`
   width: 20px;
   height: 20px;
   position: absolute;
-  right: -10px;
-  top: -10px;
+  right: 50%;
+  top: 50%;
+  margin-right: -10px;
+  margin-top: -16px;
   font-size: 20px;
+  z-index: 999;
+  cursor: move;
 `;
 
