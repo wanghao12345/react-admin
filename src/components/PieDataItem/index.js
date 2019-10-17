@@ -9,7 +9,7 @@ class PieDataItem extends React.Component{
     console.log(props);
     super(props)
     this.state = {
-      data: props.value
+      data: {...props.value, ...{index: props.index}}
     }
 
     this.handleChangeLabel = this.handleChangeLabel.bind(this)

@@ -2,7 +2,7 @@ import echarts from 'echarts'
 class Pie {
 
   constructor (id, opt) {
-    this.initChart(id, opt)
+    return this.initChart(id, opt)
   }
   /**
    * 初始化

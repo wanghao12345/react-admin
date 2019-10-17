@@ -18,8 +18,8 @@ class Pie extends React.Component{
     this.state = {
       pieData: [
         {
-          label: '',
-          value: '',
+          label: '数据0',
+          value: 10,
           status: 0
         }
       ]
@@ -47,6 +47,7 @@ class Pie extends React.Component{
                     return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
                       <PieDataItem
                         value={item}
+                        index={index}
                         handleChangeItem={this.handleChangeItem}
                         handleDeleteItem={this.handleDeleteItem}
                       ></PieDataItem>
@@ -65,6 +66,7 @@ class Pie extends React.Component{
                     return (<SourceItem key={index} index={index} handleMoveUp={this.handleMoveUp}>
                       <PieDataItem
                         value={item}
+                        index={index}
                         handleChangeItem={this.handleChangeItem}
                         handleDeleteItem={this.handleDeleteItem}
                       ></PieDataItem>
@@ -76,7 +78,7 @@ class Pie extends React.Component{
           </OptionItemWrapper>
         </OptionWrapper>
         <ShowWrapper>
-          <PanelPie />
+          <PanelPie pieData={this.state.pieData} />
         </ShowWrapper>
       </PieWrapper>
     )
@@ -110,8 +112,8 @@ class Pie extends React.Component{
    */
   handleAddDataItem () {
     const item = {
-      label: '',
-      value: '',
+      label: '数据' + this.state.pieData.length,
+      value: 10,
       status: 0
     }
     this.setState((state) => ({
