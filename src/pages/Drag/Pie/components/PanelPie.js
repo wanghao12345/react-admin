@@ -79,8 +79,6 @@ class PanelPie extends React.Component{
     return option
   }
 
-
-
 }
 
 export default PanelPie

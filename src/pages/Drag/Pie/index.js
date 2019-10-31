@@ -11,6 +11,7 @@ import {
   TitleWrapper,
   ContentWrapper
 } from './style'
+import {__DEV__} from "echarts/src/config";
 
 class Pie extends React.Component{
   constructor (props) {
@@ -29,6 +30,10 @@ class Pie extends React.Component{
     this.handleAddDataItem = this.handleAddDataItem.bind(this)
     this.handleChangeItem = this.handleChangeItem.bind(this)
     this.handleDeleteItem = this.handleDeleteItem.bind(this)
+  }
+
+  componentDidMount() {
+
   }
 
   render () {
@@ -163,4 +168,5 @@ class Pie extends React.Component{
 
 }
 
+console.log(Pie);
 export default Pie
